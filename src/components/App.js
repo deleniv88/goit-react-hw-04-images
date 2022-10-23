@@ -2,9 +2,7 @@ import { Component } from "react";
 import Select from 'react-select';
 import { fetchBreeds, fetchDogByBreed } from "api";
 import SearchBar from "./SearchBar/SearchBar";
-import axios from 'axios';
 import ImageGallery from "./ImageGallery/ImageGallery";
-import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem";
 import css from './App.module.css'
 
 const API_KEY = '30779521-b3fbf117fb3141dbf0970e7e2'
@@ -17,8 +15,6 @@ class App extends Component {
     images: []
   }
 
- 
- 
 handelGetRequest = async (e) => {
   e.preventDefault()
   const searchItem = e.target.elements.searchValue.value

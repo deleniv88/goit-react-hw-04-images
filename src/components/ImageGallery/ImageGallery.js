@@ -1,10 +1,9 @@
 // import ImageGalleryItem from "components/ImageGalleryItem/ImageGalleryItem";
-import React, { Component } from "react";
-import css from '../ImageGallery/ImageGallery.module.css'
+import React from "react";
+import css from '../ImageGallery/ImageGallery.module.css';
+import PropTypes from 'prop-types';
 
 const ImageGallery = (props) => {
-    console.log(props.images.map((im) => im.largeImageURL));
-    console.log(props);
     return (
         <div >
             {props.images.map(({ id, largeImageURL }) => {
@@ -17,16 +16,15 @@ const ImageGallery = (props) => {
                             
                         </ul>
                     </div>
-                    
                 )
             })}
-            
         </div>
-        
     )
-    
 }
 
-
+ImageGallery.propTypes = {
+    id: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired
+}
 
 export default ImageGallery;
