@@ -1,15 +1,18 @@
-import React from 'react';
 
-import * as Loader from 'react-loader-spinner'
+import BeatLoader from "react-spinners/ClipLoader";
+import css from '../Loader/Loading.module.css';
 
-
-const Spinner = () => {
-  const style = { textAlign: 'center' };
+const Loader = () => {
   return (
-    <div style={style}>
-      <Loader type="Hearts" color="#00BFFF" height={80} width={80} />
+    <div className={css.spinnerContainer}>
+      <BeatLoader className={css.loadingSpinner}
+        color='red'
+        size={150}
+        aria-label="Loading spinner"
+        data-testid="loader"/>
     </div>
   );
 };
 
-export default Spinner;
+export default Loader;
+

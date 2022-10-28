@@ -4,7 +4,7 @@ import css from './Button.module.css';
 const ButtonLoadMore = ({ onClick }) => {
     return (
         <button type="button" className={css.button} onClick={onClick}>
-            Load more
+            Load more pictures
         </button>
     );
 };

@@ -1,11 +1,11 @@
-.App {
+.app {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 16px;
     padding-bottom: 24px;
   }
 
-.titleName{
+.title{
   margin: 20px auto;
   font-family: 'Courier New', Courier, monospace;
 }

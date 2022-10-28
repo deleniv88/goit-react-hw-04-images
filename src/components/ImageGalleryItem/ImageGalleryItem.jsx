@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types';
 import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({
-  webformatURL,
-  largeImageURL,
-  tags,
-  handleSelectedImage,
-}) => {
+const ImageGalleryItem = ({ webformatURL, largeImageURL, tags, handleSelectedImage }) => {
   return (
     <li className={css.imageGalleryItem}>
       <img

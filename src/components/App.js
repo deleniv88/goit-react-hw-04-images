@@ -4,9 +4,10 @@ import SearchBar from './SearchBar/SearchBar';
 import fetchImages from 'api';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ButtonLoadMore from './Button/Button';
-import Spinner from './Loader/Loader';
+import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
 import css from './App.module.css'
+
 
 export class App extends Component {
   state = {
@@ -16,7 +17,7 @@ export class App extends Component {
     page: 1,
     error: null,
     largeImageURL: '',
-    imgTags: '',
+    tags: '',
   };
 
   handleFormSubmit = imageName => {
@@ -34,12 +35,11 @@ export class App extends Component {
       try {
         this.setState({ status: 'pending' });
         const images = await fetchImages(imageName, page);
-
         this.setState({ status: 'resolved' });
 
-        if (imageName.trim() === '' || images.length === 0) {
-          return toast.error(`there is no picture wit such name ${imageName}`);
-        }
+        if (imageName.trim() === '') {
+          return toast.error(`You didn't type anything`);
+        } 
 
         this.setState({
           images: [...this.state.images, ...images],
@@ -53,13 +53,13 @@ export class App extends Component {
         this.setState({ status: 'rejected' });
         return toast.error('uuupppss feels like we have some problems');
       } finally {
-        this.setState({ loader: false });
+        this.setState({ isLoading: false });
       }
     }
-  }
+  };
 
-  handleSelectedImage = (largeImageURL, imgTags) => {
-    this.setState({ largeImageURL, imgTags });
+  handleSelectedImage = (largeImageURL, tags) => {
+    this.setState({ largeImageURL, tags });
   };
 
   closeModal = () => {
@@ -67,13 +67,13 @@ export class App extends Component {
   };
 
   render() {
-    const { images, status, largeImageURL, imgTags } = this.state;
+    const { images, largeImageURL, tags, status } = this.state;
     return (
-      <div className={css.App}>
+      <div className={css.app}>
         <SearchBar onSearch={this.handleFormSubmit} />
         {images.length < 1 && (
           <>
-            <h2 className={css.titleName}>
+            <h2 className={css.title}>
               There is no images! Want to load some pictures? Please type at SearchBar...
             </h2>
           </>
@@ -83,7 +83,7 @@ export class App extends Component {
           images={images}
           handleSelectedImage={this.handleSelectedImage}
         />
-        {/* {status === 'pending' && <Spinner/>} */}
+        {status === 'pending' && <Loader/>}
 
         {images.length !== 0 && (
           <ButtonLoadMore onClick={this.handleLoadMore} />
@@ -94,7 +94,7 @@ export class App extends Component {
           <Modal
             onClose={this.closeModal}
             largeImageURL={largeImageURL}
-            imgTags={imgTags}
+            tags={tags}
           />
         )}
       </div>
