@@ -68,13 +68,14 @@ export class App extends Component {
 
   render() {
     const { images, largeImageURL, tags, status } = this.state;
+    const title = 'There is no images! Want to load some pictures? Please type at SearchBar...';
     return (
       <div className={css.app}>
         <SearchBar onSearch={this.handleFormSubmit} />
         {images.length < 1 && (
           <>
             <h2 className={css.title}>
-              There is no images! Want to load some pictures? Please type at SearchBar...
+              {title}
             </h2>
           </>
         )}
