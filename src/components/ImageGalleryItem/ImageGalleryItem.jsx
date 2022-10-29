@@ -15,11 +15,10 @@ const ImageGalleryItem = ({ webformatURL, largeImageURL, tags, handleSelectedIma
 };
 
 ImageGalleryItem.propTypes = {
-  image: PropTypes.shape({
     webformatURL: PropTypes.string.isRequired,
     largeImageURL: PropTypes.string.isRequired,
-    tags: PropTypes.string,
-  }),
+    tags: PropTypes.string.isRequired,
+    handleSelectedImage: PropTypes.func.isRequired
 };
 
 export default ImageGalleryItem;

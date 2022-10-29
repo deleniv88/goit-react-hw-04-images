@@ -18,12 +18,16 @@ const ImageGallery = ({ images, handleSelectedImage }) => {
   );
 };
 
-ImageGallery.propTypes = {
+ImageGallery.prototype = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-    }),
-  ),
-};
+      webformatURL: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+      tags: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
+  handleSelectedImage: PropTypes.func.isRequired
+}
 
 export default ImageGallery;

@@ -20,9 +20,22 @@ export class App extends Component {
     tags: '',
   };
 
-  handleFormSubmit = imageName => {
-    this.setState({ imageName, page: 1, images: [] });
-  };
+  // handleFormSubmit = imageName => {
+  //   this.setState({ imageName, page: 1, images: [] });
+  // };
+
+  handleFormSubmit = e => {
+    e.preventDefault();
+    const formInput = e.target.elements.imageName.value;
+    if (formInput !== this.state.imageName) {
+      this.setState({
+        page: 1,
+        imageName: formInput,
+        images: []
+      })
+    }
+    e.target.reset();
+  }
 
   handleLoadMore = () => {
     this.setState(p => ({ page: p.page + 1 }));
@@ -39,7 +52,7 @@ export class App extends Component {
 
         if (imageName.trim() === '') {
           return toast.error(`You didn't type anything`);
-        } 
+        }
 
         this.setState({
           images: [...this.state.images, ...images],
@@ -73,18 +86,16 @@ export class App extends Component {
       <div className={css.app}>
         <SearchBar onSearch={this.handleFormSubmit} />
         {images.length < 1 && (
-          <>
-            <h2 className={css.title}>
-              {title}
-            </h2>
-          </>
+          <h2 className={css.title}>
+            {title}
+          </h2>
         )}
 
         <ImageGallery
           images={images}
           handleSelectedImage={this.handleSelectedImage}
         />
-        {status === 'pending' && <Loader/>}
+        {status === 'pending' && <Loader />}
 
         {images.length !== 0 && (
           <ButtonLoadMore onClick={this.handleLoadMore} />
