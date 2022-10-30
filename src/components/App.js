@@ -11,7 +11,7 @@ import css from './App.module.css'
 
 export class App extends Component {
   state = {
-    imageName: null,
+    imageName: '',
     images: [],
     status: 'idle',
     page: 1,
@@ -23,6 +23,7 @@ export class App extends Component {
   // handleFormSubmit = imageName => {
   //   this.setState({ imageName, page: 1, images: [] });
   // };
+
 
   handleFormSubmit = e => {
     e.preventDefault();
@@ -84,7 +85,7 @@ export class App extends Component {
     const title = 'There is no images! Want to load some pictures? Please type at SearchBar...';
     return (
       <div className={css.app}>
-        <SearchBar onSearch={this.handleFormSubmit} />
+        <SearchBar onSearch={this.handleFormSubmit}/>
         {images.length < 1 && (
           <h2 className={css.title}>
             {title}
