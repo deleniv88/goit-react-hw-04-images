@@ -58,7 +58,8 @@ export default function App() {
   }
 
   const closeModal = () => {
-    setLargeImageURL('')
+    setLargeImageURL('');
+    setTags('');
   }
 
   return (
