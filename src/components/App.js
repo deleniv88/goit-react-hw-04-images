@@ -18,31 +18,15 @@ export class App extends Component {
     error: null,
     largeImageURL: '',
     tags: '',
-  };
+  }
 
   handelSubmit= imageName => {
     this.setState({ imageName, page: 1, images: [] });
-  };
-
-  // handleOnChange = e => {
-  //   const { imageName, value } = e.currentTarget;
-  //   this.setState({ [imageName]: value }) // eslint-disable-next-line
-  // }
-
-  // handleFormSubmit = imageName => {
-  //   const formInput = imageName
-  //   if (formInput !== this.state.imageName) {
-  //     this.setState({
-  //       page: 1,
-  //       imageName: formInput,
-  //       images: []
-  //     })
-  //   }
-  // }
+  }
 
   handleLoadMore = () => {
     this.setState(p => ({ page: p.page + 1 }));
-  };
+  }
 
   async componentDidUpdate(_, prevState) {
     const { imageName, page } = this.state;
@@ -51,13 +35,9 @@ export class App extends Component {
       try {
         this.setState({ status: 'pending' });
         const images = await fetchImages(imageName, page);
-        this.setState({ status: 'resolved' });
-
-        if (imageName.trim() === '') {
-          return toast.error(`You didn't type anything`);
-        }
-
+               
         this.setState({
+          status: 'resolved',
           images: [...this.state.images, ...images],
         });
 
@@ -65,6 +45,7 @@ export class App extends Component {
           top: document.documentElement.scrollHeight,
           behavior: 'smooth',
         });
+        
       } catch (error) {
         this.setState({ status: 'rejected' });
         return toast.error('uuupppss feels like we have some problems');
@@ -72,25 +53,24 @@ export class App extends Component {
         this.setState({ isLoading: false });
       }
     }
-  };
+  }
 
   handleSelectedImage = (largeImageURL, tags) => {
     this.setState({ largeImageURL, tags });
-  };
+  }
 
   closeModal = () => {
     this.setState({ largeImageURL: '' });
-  };
+  }
 
   render() {
     const { images, largeImageURL, tags, status } = this.state;
-    const title = 'There is no images! Want to load some pictures? Please type at SearchBar...';
     return (
       <div className={css.app}>
         <SearchBar onSubmit={this.handelSubmit}/>
         {images.length < 1 && (
           <h2 className={css.title}>
-            {title}
+            There is no images! Want to load some pictures? Please type at SearchBar...
           </h2>
         )}
 
@@ -113,7 +93,7 @@ export class App extends Component {
           />
         )}
       </div>
-    );
+    )
   }
 }
 

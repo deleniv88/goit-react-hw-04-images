@@ -11,14 +11,14 @@ const ImageGalleryItem = ({ webformatURL, largeImageURL, tags, handleSelectedIma
         onClick={() => handleSelectedImage(largeImageURL, tags)}
       />
     </li>
-  );
-};
+  )
+}
 
 ImageGalleryItem.propTypes = {
     webformatURL: PropTypes.string.isRequired,
     largeImageURL: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
     handleSelectedImage: PropTypes.func.isRequired
-};
+}
 
 export default ImageGalleryItem;

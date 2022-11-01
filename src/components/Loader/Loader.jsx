@@ -11,8 +11,8 @@ const Loader = () => {
         aria-label="Loading spinner"
         data-testid="loader"/>
     </div>
-  );
-};
+  )
+}
 
 export default Loader;
 

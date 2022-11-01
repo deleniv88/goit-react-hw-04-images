@@ -6,11 +6,11 @@ const ButtonLoadMore = ({ onClick }) => {
         <button type="button" className={css.button} onClick={onClick}>
             Load more pictures
         </button>
-    );
-};
+    )
+}
 
 ButtonLoadMore.propTypes = {
     onClick: PropTypes.func.isRequired,
-};
+}
 
 export default ButtonLoadMore;

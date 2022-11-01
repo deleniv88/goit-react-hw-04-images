@@ -5,24 +5,24 @@ import PropTypes from 'prop-types';
 class SearchBar extends Component {
 
   state = {
-    imageName: '',
+    imageName: ''
   }
 
   handelChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handelSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(e.target.elements.imageName.value)
+    this.props.onSubmit(this.state.imageName);
     this.resert();
-  };
+  }
 
   resert = () => {
     this.setState({
-      imageName: '',
-    })
-  };
+      imageName: ''
+    });
+  }
 
   render() {
     return (
@@ -47,48 +47,12 @@ class SearchBar extends Component {
           />
         </form>
       </header>
-    );
+    )
   }
-};
-
-SearchBar.propTypes = {
-  imageName: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired
 }
 
-
-// const SearchBar = ({onSearch}) => {
-
-//   return (
-//     <header className={css.searchbar}>
-//       <form
-//         className={css.searchForm}
-//         // onSubmit={onSearch}
-//         onSubmit={e => {
-//           e.preventDefault();
-//           onSearch(e.target.elements.imageName.value);
-//           e.target.reset();
-//         }}
-//       >
-//         <button type="submit" className={css.searchFormButton}>
-//           <span className={css.searchFormButtonLabel}>Search</span>
-//         </button>
-
-//         <input
-//           className={css.searchFormInput}
-//           type="text"
-//           autoComplete="off"
-//           autoFocus
-//           placeholder="Search images and photos"
-//           name="imageName" 
-//         />
-//       </form>
-//     </header>
-//   );
-// };
-
-// SearchBar.propTypes = {
-//   onSearch: PropTypes.func.isRequired
-// }
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+}
 
 export default SearchBar;

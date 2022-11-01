@@ -15,10 +15,10 @@ const ImageGallery = ({ images, handleSelectedImage }) => {
         />
       ))}
     </ul>
-  );
-};
-
-ImageGallery.prototype = {
+  )
+}
+  
+ImageGallery.propTypes = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
