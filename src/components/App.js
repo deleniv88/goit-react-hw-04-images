@@ -20,23 +20,25 @@ export class App extends Component {
     tags: '',
   };
 
+  handelSubmit= imageName => {
+    this.setState({ imageName, page: 1, images: [] });
+  };
+
+  // handleOnChange = e => {
+  //   const { imageName, value } = e.currentTarget;
+  //   this.setState({ [imageName]: value }) // eslint-disable-next-line
+  // }
+
   // handleFormSubmit = imageName => {
-  //   this.setState({ imageName, page: 1, images: [] });
-  // };
-
-
-  handleFormSubmit = e => {
-    e.preventDefault();
-    const formInput = e.target.elements.imageName.value;
-    if (formInput !== this.state.imageName) {
-      this.setState({
-        page: 1,
-        imageName: formInput,
-        images: []
-      })
-    }
-    e.target.reset();
-  }
+  //   const formInput = imageName
+  //   if (formInput !== this.state.imageName) {
+  //     this.setState({
+  //       page: 1,
+  //       imageName: formInput,
+  //       images: []
+  //     })
+  //   }
+  // }
 
   handleLoadMore = () => {
     this.setState(p => ({ page: p.page + 1 }));
@@ -85,7 +87,7 @@ export class App extends Component {
     const title = 'There is no images! Want to load some pictures? Please type at SearchBar...';
     return (
       <div className={css.app}>
-        <SearchBar onSearch={this.handleFormSubmit}/>
+        <SearchBar onSubmit={this.handelSubmit}/>
         {images.length < 1 && (
           <h2 className={css.title}>
             {title}
